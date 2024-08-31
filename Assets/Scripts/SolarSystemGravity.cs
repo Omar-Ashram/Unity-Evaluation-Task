@@ -6,25 +6,26 @@ using UnityEngine.UIElements;
 
 public class SolarSystemGravity : MonoBehaviour
 {
-    GameObject[] celestials;
+   // GameObject[] celestials;
     const float g = 6.6743f;
 
 
-   // public static List<GameObject> celestials;
+    
 
 
     // Start is called before the first frame update
     void Start()
     {
-        celestials = GameObject.FindGameObjectsWithTag("celestial");
+        //celestials = GameObject.FindGameObjectsWithTag("celestial");
+
         instialVelocity();
        
     }
-
+    
     // Update is called once per frame
     void Update()
     {
-
+      
     }
 
     private void FixedUpdate()
@@ -34,9 +35,9 @@ public class SolarSystemGravity : MonoBehaviour
 
     void Gravity()
     {
-        foreach (GameObject a in celestials)
+        foreach (GameObject a in celestials.celestialsList)
         {
-            foreach (GameObject b in celestials)
+            foreach (GameObject b in celestials.celestialsList)
             {
                 if (!a.Equals(b))
                 {
@@ -45,12 +46,15 @@ public class SolarSystemGravity : MonoBehaviour
                     float m2 = b.GetComponent<Rigidbody>().mass;
 
                     Vector3 dir = (b.transform.position - a.transform.position);
+                    
                     float dist = dir.magnitude;
 
                     float gforce =( g * (m1 * m2) / (dist*dist));
                     Vector3 force = dir.normalized * gforce;
-
-                  a.GetComponent<Rigidbody>().AddForce(force);
+                   
+                   
+                    a.GetComponent<Rigidbody>().AddForce(force);
+                  
 
                 }
 
@@ -62,9 +66,9 @@ public class SolarSystemGravity : MonoBehaviour
 
     void instialVelocity()
     {
-        foreach (GameObject a in celestials)
+        foreach (GameObject a in celestials.celestialsList)
         {
-            foreach (GameObject b in celestials)
+            foreach (GameObject b in celestials.celestialsList)
             {
                 if (!a.Equals(b))
                 {
@@ -72,9 +76,11 @@ public class SolarSystemGravity : MonoBehaviour
 
                     float dist = Vector3.Distance(a.transform.position, b.transform.position);
                     a.transform.LookAt(b.transform.position);
-
+                    
                     float instantVelocity = Mathf.Sqrt((g * m2) / dist);
+                    
                     a.GetComponent<Rigidbody>().velocity += a.transform.right * instantVelocity;
+                   
                 }
             }
         }
