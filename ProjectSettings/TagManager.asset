@@ -6,6 +6,8 @@ TagManager:
   tags:
   - celestial
   - GravityManager
+  - TrackingObject
+  - Actors
   layers:
   - Default
   - TransparentFX

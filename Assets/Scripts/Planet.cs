@@ -23,6 +23,6 @@ public class Planet : MonoBehaviour
 
     private void Update()
     {
-        transform.Rotate(transform.up,10 * Time.deltaTime);
+        transform.Rotate(transform.up, 10 * Time.deltaTime);
     }
 }

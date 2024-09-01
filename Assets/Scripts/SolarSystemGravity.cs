@@ -52,7 +52,8 @@ public class SolarSystemGravity : MonoBehaviour
                     float gforce =( g * (m1 * m2) / (dist*dist));
                     Vector3 force = dir.normalized * gforce;
                    
-                   
+                   if(a.transform.position == b.transform.position)
+                        return;
                     a.GetComponent<Rigidbody>().AddForce(force);
                   
 
@@ -75,12 +76,19 @@ public class SolarSystemGravity : MonoBehaviour
                     float m2 = b.GetComponent<Rigidbody>().mass;
 
                     float dist = Vector3.Distance(a.transform.position, b.transform.position);
-                    a.transform.LookAt(b.transform.position);
+                   
+                        a.transform.LookAt(b.transform.position);
                     
                     float instantVelocity = Mathf.Sqrt((g * m2) / dist);
                     
-                    a.GetComponent<Rigidbody>().velocity += a.transform.right * instantVelocity;
-                   
+                    if(a.transform.position == b.transform.position)
+                            return;
+
+                    if (!(a.name == "Venus" || a.name == "Uranus"))
+                        a.GetComponent<Rigidbody>().velocity += a.transform.right * instantVelocity;
+                    else 
+                        a.GetComponent<Rigidbody>().velocity -= a.transform.right * instantVelocity;
+
                 }
             }
         }
