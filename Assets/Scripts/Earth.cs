@@ -17,6 +17,7 @@ public class Earth : MonoBehaviour
     {
         get
         {
+          
             return transform.position; 
         }
 

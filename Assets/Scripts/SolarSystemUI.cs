@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
 
 public class SolarSystemUI : MonoBehaviour
 {
@@ -12,17 +13,23 @@ public class SolarSystemUI : MonoBehaviour
 
     [SerializeField] Image PlanetImage;
     [SerializeField] TextMeshProUGUI PlanetText;
-    [SerializeField] GameObject cameraObj;
+    [Space]
+    [SerializeField] CinemachineVirtualCamera PlanetCam;
+    [SerializeField] CinemachineVirtualCamera TopCam;
+
+    public  CinemachineTransposer vcamOffSet;
+
+    private void Awake()
+    {
+        if (vcamOffSet == null)
+            vcamOffSet = PlanetCam.GetCinemachineComponent<CinemachineTransposer>();
+        else
+            Debug.Log("null");
+    }
     // Start is called before the first frame update
     void Start()
     {
         PlanetImage.sprite = sprites[index];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void increaseIndex() {
@@ -41,8 +48,19 @@ public class SolarSystemUI : MonoBehaviour
     public void WatchPlanet() 
     {
         GameObject planetToWatch = GameObject.Find(sprites[index].name);
+        PlanetCam.Follow = planetToWatch.transform;
+        PlanetCam.LookAt = planetToWatch.transform;
 
-        cameraObj.transform.position = planetToWatch.transform.position + new Vector3(0,10,0);
-    
+        Vector3 FollowOffset = planetToWatch.GetComponent<Planet>().FollowOffset;
+        vcamOffSet.m_FollowOffset = FollowOffset;
+        TopCam.enabled = false;
+        PlanetCam.enabled = true;
+    }
+
+    public void WatchTop() 
+    {
+        TopCam.enabled = true;
+        PlanetCam.enabled = false;
+
     }
 }
