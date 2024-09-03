@@ -11,13 +11,13 @@ public class PlanetsRelativeToEarth : MonoBehaviour
     [SerializeField]float DistanceFromSunRatio;
     [SerializeField]float MassRatio;
     [SerializeField]float DiameterRatio;
-
+ 
     Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+       
         transform.position = earth.getEarthDistanceFromSun * DistanceFromSunRatio;
 
         transform.localScale = earth.getEarthDiameter * DiameterRatio;
