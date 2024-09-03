@@ -6,26 +6,15 @@ using UnityEngine.UIElements;
 
 public class SolarSystemGravity : MonoBehaviour
 {
-   // GameObject[] celestials;
+ 
     const float g = 6.6743f;
-
-
-    
-
 
     // Start is called before the first frame update
     void Start()
     {
-        //celestials = GameObject.FindGameObjectsWithTag("celestial");
-
+       
         instialVelocity();
        
-    }
-    
-    // Update is called once per frame
-    void Update()
-    {
-      
     }
 
     private void FixedUpdate()

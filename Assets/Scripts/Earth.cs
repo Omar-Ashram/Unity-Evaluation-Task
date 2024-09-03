@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Earth : MonoBehaviour
 {
-    [SerializeField] GameObject sun;
 
     Rigidbody Earthbody;
     // Start is called before the first frame update

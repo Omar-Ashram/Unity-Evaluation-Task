@@ -17,15 +17,10 @@ public class PlanetsRelativeToEarth : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        transform.position =  earth.getEarthDistanceFromSun * DistanceFromSunRatio;
+        
+        transform.position = earth.getEarthDistanceFromSun * DistanceFromSunRatio;
+
         transform.localScale = earth.getEarthDiameter * DiameterRatio;
         rb.mass = earth.getEarthMass * MassRatio;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
 }

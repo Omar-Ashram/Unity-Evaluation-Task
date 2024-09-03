@@ -51,7 +51,7 @@ public class SolarSystemUI : MonoBehaviour
         PlanetCam.Follow = planetToWatch.transform;
         PlanetCam.LookAt = planetToWatch.transform;
 
-        Vector3 FollowOffset = planetToWatch.GetComponent<Planet>().FollowOffset;
+        Vector3 FollowOffset = planetToWatch.GetComponent<PlanetCloseCam>().FollowOffset;
         vcamOffSet.m_FollowOffset = FollowOffset;
         TopCam.enabled = false;
         PlanetCam.enabled = true;
